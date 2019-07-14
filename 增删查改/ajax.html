@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+    <form id="form" action="process.php" method="GET">
+       <input type="text" name="name" id="name" placeholder="更改">
+       <input type="submit" value="更改">
+    </form>
+    <div id="process"></div>
+</body>
+<script>
+   
+   document.getElementById('form').addEventListener("submit",getDate);
+
+   function getDate(e) {
+   	  e.preventDefault();
+   	  var name = document.getElementById("name").value;
+   	  var xhr = new XMLHttpRequest();
+   	  xhr.open("GET","process.php?name="+name,true);
+   	  xhr.onreadystatechange = function(){
+   	  	 if (this.readyState == 4 && this.status == 200) {
+   	  	 	document.getElementById("process").innerHTML = this.responseText;
+   	  	 }
+   	  }
+   	  xhr.send();
+   }
+
+
+
+
+
+
+
+
+</script>
+</html>
